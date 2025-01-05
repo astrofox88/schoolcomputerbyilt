@@ -1,109 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-   <title>school coputer links</title>
-   
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>School Computer Links</title>
+   <style>
+       /* Basit stil eklemeleri */
+       body {
+           font-family: Arial, sans-serif;
+           text-align: center;
+           margin-top: 50px;
+           background-color: #f3f4f6;
+           color: #333;
+       }
+       nav ul {
+           list-style-type: none;
+           padding: 0;
+       }
+       nav li {
+           display: inline;
+           margin-right: 10px;
+       }
+       nav a {
+           text-decoration: none;
+           color: #000;
+           font-weight: bold;
+       }
+       nav a:hover {
+           color: #007bff;
+       }
+   </style>
 </head>
 <body>
     <header>
-
-   <h1>
-     links for school computers
-   </h1>
+        <h1>Links for School Computers</h1>
         <!-- Navigation Menüsü -->
-          <nav>
+        <nav>
             <ul>
-              <li><a href="index.html">home</a></li>
-              <li><a href=games.html">games</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
             </ul>
-          </nav>
-        
-       
+        </nav>
     </header>
-   <p>
-      _______________________
-   </p>
-   
-   <h2>
-      for class
-   </h2>
-  <p>
-     click for wikipedia
-  </p>
-  <button><a href="https://en.m.wikipedia.org/wiki/Main_Page">wikipedia</a></button>
-  <p>
-     <p>
-        click for calculator
-     </p>
-     <button><a href="https://www.desmos.com/scientific"></a>calculator</button>
-   
-   <br />  
 
-  <br /> ______________________________
-   <!DOCTYPE html>
-   <html lang="en">
-   <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Countdown to Next School Break</title>
-       <style>
-           body {
-               font-family: Arial, sans-serif;
-               text-align: center;
-               margin-top: 50px;
-               background-color: #f3f4f6;
-               color: #333;
-           }
-           #countdown {
-               font-size: 2rem;
-               font-weight: bold;
-           }
-       </style>
-   </head>
-   <body>
-       <h1>Time Left Until Next School Break</h1>
-       <div id="countdown">Loading...</div>
+    <p>______________________</p>
 
-       <script>
-           // Define the holiday dates (Year, Month-1, Day, Hour, Minute, Second)
-           const holidays = [
-               new Date(2025, 0, 5, 0, 0, 0), // Winter Break End: Jan 5, 2025
-               new Date(2025, 2, 10, 0, 0, 0), // Spring Break Start: Mar 10, 2025
-               new Date(2025, 5, 1, 0, 0, 0),  // Summer Break Start: Jul 1, 2025
-               new Date(2025, 9, 13, 0, 0, 0)  // Thanksgiving: Oct 13, 2025
-           ];
+    <h2>For Class</h2>
+    <p>Click for Wikipedia</p>
+    <button><a href="https://en.m.wikipedia.org/wiki/Main_Page" target="_blank">Wikipedia</a></button>
 
-           let nextHolidayIndex = getNextHolidayIndex();
+    <p>Click for Calculator</p>
+    <button><a href="https://www.desmos.com/scientific" target="_blank">Calculator</a></button>
 
-           function getNextHolidayIndex() {
-               const now = new Date();
-               for (let i = 0; i < holidays.length; i++) {
-                   if (holidays[i] > now) {
-                       return i;
-                   }
-               }
-               return 0; // If all holidays have passed, show the first holiday again
-           }
+    <br />
+    <br /> 
+    ______________________________
 
-           function updateCountdown() {
-               const now = new Date();
-               const timeLeft = holidays[nextHolidayIndex] - now;
+    <!-- Countdown Section -->
+    <h1>Time Left Until Next School Break</h1>
+    <div id="countdown">Loading...</div>
 
-               if (timeLeft <= 0) {
-                   nextHolidayIndex = getNextHolidayIndex(); // Move to the next holiday
-               }
+    <script>
+        const holidays = [
+            new Date(2025, 0, 5, 0, 0, 0), // Winter Break End: Jan 5, 2025
+            new Date(2025, 2, 10, 0, 0, 0), // Spring Break Start: Mar 10, 2025
+            new Date(2025, 5, 1, 0, 0, 0),  // Summer Break Start: Jul 1, 2025
+            new Date(2025, 9, 13, 0, 0, 0)  // Thanksgiving: Oct 13, 2025
+        ];
 
-               const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-               const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-               const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-               const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        let nextHolidayIndex = getNextHolidayIndex();
 
-               document.getElementById("countdown").textContent =
-                   `Next break in ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds.`;
-           }
+        function getNextHolidayIndex() {
+            const now = new Date();
+            for (let i = 0; i < holidays.length; i++) {
+                if (holidays[i] > now) {
+                    return i;
+                }
+            }
+            return 0;
+        }
 
-           const interval = setInterval(updateCountdown, 1000); // Update every second
-       </script>
-   </body>
-   </html>
-  
+        function updateCountdown() {
+            const now = new Date();
+            const timeLeft = holidays[nextHolidayIndex] - now;
+
+            if (timeLeft <= 0) {
+                nextHolidayIndex = getNextHolidayIndex();
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").textContent =
+                `Next break in ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds.`;
+        }
+
+        const interval = setInterval(updateCountdown, 1000);
+    </script>
 </body>
-
+</html>
