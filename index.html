@@ -5,7 +5,6 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>School Computer Links</title>
    <style>
-       /* Basit stil eklemeleri */
        body {
            font-family: Arial, sans-serif;
            text-align: center;
@@ -29,36 +28,69 @@
        nav a:hover {
            color: #007bff;
        }
+       .search-container {
+           display: flex;
+           justify-content: center;
+           margin: 20px 0;
+       }
+       .search-container input {
+           width: 300px;
+           padding: 10px;
+           border: 2px solid #ccc;
+           border-radius: 5px;
+       }
+       .search-container button {
+           padding: 10px 15px;
+           margin-left: 5px;
+           border: none;
+           background-color: #007BFF;
+           color: white;
+           cursor: pointer;
+           border-radius: 5px;
+       }
+       section {
+           margin: 20px 0;
+       }
    </style>
 </head>
 <body>
     <header>
         <h1>Links for School Computers</h1>
-        <!-- Navigation Menüsü -->
+        <!-- Navigation Menu -->
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="games.html">Games</a></li>
             </ul>
         </nav>
+
+        <div class="search-container">
+            <form id="searchForm">
+                <input type="text" id="searchInput" placeholder="Search...">
+                <button type="submit">Go</button>
+            </form>
+        </div>
     </header>
 
     <p>______________________</p>
 
     <h2>For Class</h2>
-    <p>Click for Wikipedia</p>
-    <button><a href="https://en.m.wikipedia.org/wiki/Main_Page" target="_blank">Wikipedia</a></button>
+    <div id="wikipedia">
+        <p>Click for Wikipedia</p>
+        <button><a href="https://en.m.wikipedia.org/wiki/Main_Page" target="_blank">Wikipedia</a></button>
+    </div>
 
-    <p>Click for Calculator</p>
-    <button><a href="https://www.desmos.com/scientific" target="_blank">Calculator</a></button>
-
+    <div id="calculator">
+        <p>Click for Calculator</p>
+        <button><a href="https://www.desmos.com/scientific" target="_blank">Calculator</a></button>
+    </div>
     <br />
-    <br /> 
+    <br />
     ______________________________
-
-    <!-- Countdown Section -->
-    <h1>Time Left Until Next School Break</h1>
-    <div id="countdown">Loading...</div>
+    <div id="holiday-timer">
+        <h1>Time Left Until Next School Break</h1>
+        <div id="countdown">Loading...</div>
+    </div>
 
     <script>
         const holidays = [
@@ -90,7 +122,7 @@
 
             const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
             const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
             document.getElementById("countdown").textContent =
@@ -98,6 +130,34 @@
         }
 
         const interval = setInterval(updateCountdown, 1000);
+
+        // Search functionality
+        document.getElementById('searchForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent form submission
+            const query = document.getElementById('searchInput').value.toLowerCase();
+
+            // Define routes for sections and pages
+            const routes = {
+                "wikipedia": "#wikipedia",
+                "calculator": "#calculator",
+                "holiday": "#holiday-timer",
+                "geometry dash": "games.html#geometry-dash",
+                "plane game": "games.html#plane-game",
+                "rocket cowboy": "games.html#rocket-cowboy"
+            };
+
+            if (routes[query]) {
+                if (routes[query].startsWith("#")) {
+                    // Navigate to a section on index.html
+                    window.location.hash = routes[query];
+                } else {
+                    // Navigate to a section on games.html
+                    window.location.href = routes[query];
+                }
+            } else {
+                alert(`No results found for: ${query}`);
+            }
+        });
     </script>
 </body>
 </html>
